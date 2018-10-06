@@ -52,10 +52,12 @@ public class Usuario {
 	}
 
 	
-public int calcularEdad() {
+public long calcularEdad() {
 	GregorianCalendar FechaActual = new GregorianCalendar();
-	int edad;
-	edad=FechaActual-nacimiento;
+	long edad;
+	edad=FechaActual.getTimeInMillis()-nacimiento.getTimeInMillis();
+	edad=edad/(1000*60*60*24);
+	return edad/365;
 	
 	
 }
