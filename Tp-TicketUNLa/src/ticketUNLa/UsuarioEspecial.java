@@ -1,9 +1,9 @@
 package ticketUNLa;
 
-public class usuarioEspecial {
+public class UsuarioEspecial {
 	private int codigoUsuario;
 	private String permisos;
-	public usuarioEspecial(int codigoUsuario, String permisos) {
+	public UsuarioEspecial(int codigoUsuario, String permisos) {
 		this.setCodigoUsuario(codigoUsuario);
 		this.setPermisos(permisos);
 	}
