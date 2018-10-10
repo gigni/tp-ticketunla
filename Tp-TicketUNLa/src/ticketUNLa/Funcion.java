@@ -3,15 +3,13 @@ import java.util.*;
 
 public class Funcion {
 	
-	protected int funcionNumero;
-	protected GregorianCalendar horarioInicio;
-	protected GregorianCalendar horarioFinalizacion;
+	private int funcionNumero;
+	private GregorianCalendar fecha;
 	
-	public Funcion(int funcionNumero, GregorianCalendar horarioInicio, GregorianCalendar horarioFinalizacion) {
+	public Funcion(int funcionNumero, GregorianCalendar fecha) {
 		super();
 		this.funcionNumero = funcionNumero;
-		this.horarioInicio = horarioInicio;
-		this.horarioFinalizacion = horarioFinalizacion;
+		this.fecha = fecha;
 	}
 
 	public int getFuncionNumero() {
@@ -22,20 +20,19 @@ public class Funcion {
 		this.funcionNumero = funcionNumero;
 	}
 
-	public GregorianCalendar getHorarioInicio() {
-		return horarioInicio;
+	public GregorianCalendar getFecha() {
+		return fecha;
 	}
 
-	public void setHorarioInicio(GregorianCalendar horarioInicio) {
-		this.horarioInicio = horarioInicio;
+	public void setFecha(GregorianCalendar fecha) {
+		this.fecha = fecha;
 	}
+	
 
-	public GregorianCalendar getHorarioFinalizacion() {
-		return horarioFinalizacion;
-	}
 
-	public void setHorarioFinalizacion(GregorianCalendar horarioFinalizacion) {
-		this.horarioFinalizacion = horarioFinalizacion;
-	}
+	
+
+
+	
 
 }
