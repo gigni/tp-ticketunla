@@ -1,23 +1,19 @@
 package ticketUNLa;
 
 public class UbicacionDisponible {
-	private int id;
+	protected boolean disponibilidad;
 	
-	/**
-	 * @param id
-	 */
-	public UbicacionDisponible(int id) {
+	public UbicacionDisponible(boolean disponibilidad) {
 		super();
-		this.id = id;
+		this.disponibilidad = disponibilidad;
 	}
 
-	public int getId() {
-		return id;
+	public UbicacionDisponible() {
+		// TODO Auto-generated constructor stub
 	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	
+	
+	
 }
 
 
