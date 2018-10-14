@@ -1,39 +1,35 @@
 package ticketUNLa;
-import ticketUNLa.UbicacionDisponible;
 
-public class Butaca extends UbicacionDisponible {
-	
-	private int x;
-	private int y;
-	
-	public Butaca() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Butaca(int x, int y,boolean disponibilidad) {
-		super(disponibilidad);
-		this.x = x;
-		this.y = y;
-	}
+public class Butaca {
+	private int posicionX;
+	private int posicionY;
+	private boolean Ocupado;
 
-	public int getX() {
-		return x;
+	public Butaca(int posicionX, int posicionY, boolean ocupado) {
+		this.posicionX = posicionX;
+		this.posicionY = posicionY;
+		Ocupado = ocupado;
 	}
-
-	public void setX(int x) {
-		this.x = x;
+	public int getPosicionX() {
+		return posicionX;
 	}
-
-	public int getY() {
-		return y;
+	public void setPosicionX(int posicionX) {
+		this.posicionX = posicionX;
 	}
-
-	public void setY(int y) {
-		this.y = y;
+	public int getPosicionY() {
+		return posicionY;
 	}
-	
-	
-	
-
+	public void setPosicionY(int posicionY) {
+		this.posicionY = posicionY;
+	}
+	public boolean isOcupado() {
+		return Ocupado;
+	}
+	public void setOcupado(boolean ocupado) {
+		Ocupado = ocupado;
+	}
+	@Override
+	public String toString() {
+		return "\nButaca [posicionX=" + posicionX + ", posicionY=" + posicionY + ", Ocupado=" + Ocupado + "]";
+	}
 }
