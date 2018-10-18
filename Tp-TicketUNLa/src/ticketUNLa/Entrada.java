@@ -36,10 +36,16 @@ public class Entrada {
 		this.ubicacionSeleccionada = ubicacionSeleccionada;
 	}
 
+	@Override
+	public String toString() {
+		return "Entrada [numeroEntrada=" + numeroEntrada + ", valorfinalEntrada=" + valorfinalEntrada
+				+ ", ubicacionSeleccionada=" + ubicacionSeleccionada + "]";
+	}
+
 	
 	
-public String imprimirTicket() {//agregar cantidad de tikets comprada por un usuario y usarlo para imprimir distintas partes de la lista
+//public String imprimirTicket() {//agregar cantidad de tikets comprada por un usuario y usarlo para imprimir distintas partes de la lista
 	
 	
-}
+//}
 }

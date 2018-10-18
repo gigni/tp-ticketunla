@@ -1,8 +1,5 @@
 package ticketUNLa;
-import java.time.Period;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import ticketUNLa.Funciones;
+import java.util.*;
 
 
 public class Usuario {
