@@ -1,11 +1,17 @@
 package ticketUNLa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Evento {
 	
-	protected String nombre;
+	private String nombre;
+	private List<Funcion>funciones = new ArrayList<Funcion>();
+	private List<Tarifa> tarifas = new ArrayList<Tarifa>();
 	
+
+
 	public Evento(String nombre) {
-		super();
 		this.nombre = nombre;
 	}
 
@@ -17,8 +23,20 @@ public class Evento {
 		this.nombre = nombre;
 	}
 
+	public List<Funcion> getFunciones() {
+		return funciones;
+	}
 
-	
+	public void setFunciones(List<Funcion> funciones) {
+		this.funciones = funciones;
+	}
 
+	public List<Tarifa> getTarifas() {
+		return tarifas;
+	}
+
+	public void setTarifas(List<Tarifa> tarifas) {
+		this.tarifas = tarifas;
+	}
 
 }

@@ -5,11 +5,13 @@ public class Funcion {
 	
 	private int funcionNumero;
 	private GregorianCalendar fecha;
+	private Auditorio auditorio;
 	
-	public Funcion(int funcionNumero, GregorianCalendar fecha) {
-		super();
+
+	public Funcion(int funcionNumero, GregorianCalendar fecha, Auditorio auditorio) {
 		this.funcionNumero = funcionNumero;
 		this.fecha = fecha;
+		this.auditorio = auditorio;
 	}
 
 	public int getFuncionNumero() {
@@ -27,12 +29,13 @@ public class Funcion {
 	public void setFecha(GregorianCalendar fecha) {
 		this.fecha = fecha;
 	}
-	
 
+	public Auditorio getAuditorio() {
+		return auditorio;
+	}
 
-	
-
-
-	
+	public void setAuditorio(Auditorio auditorio) {
+		this.auditorio = auditorio;
+	}
 
 }
