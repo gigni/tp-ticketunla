@@ -4,7 +4,7 @@ import ticketUNLa.Compra;
 
 public class TestCancelarEntradaEnCompra {
 
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Compra compra = new Compra();
 		Entrada entrada1 = new Entrada(1,400,"pullman");
@@ -21,5 +21,5 @@ public class TestCancelarEntradaEnCompra {
 			System.out.println(compra.getListaEntradas().get(p));
 			}
 	}
-
+*/
 }

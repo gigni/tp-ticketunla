@@ -1,13 +1,17 @@
 package ticketUNLa;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Auditorio {
 	
-	protected String nombre;
-	protected String tipoAuditorio;
-	protected String direccion;
+	private String nombre;
+	private String tipoAuditorio;
+	private String direccion;
+	private List<Sector> sectores = new ArrayList<Sector>();
 	
+
+
 	public Auditorio(String nombre, String tipoAuditorio, String direccion) {
-		super();
 		this.nombre = nombre;
 		this.tipoAuditorio = tipoAuditorio;
 		this.direccion = direccion;
@@ -35,6 +39,14 @@ public class Auditorio {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	public List<Sector> getSectores() {
+		return sectores;
+	}
+
+	public void setSectores(List<Sector> sectores) {
+		this.sectores = sectores;
 	}
 
 
