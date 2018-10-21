@@ -17,6 +17,10 @@ public class Auditorio {
 		this.direccion = direccion;
 	}
 
+	public Auditorio() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

@@ -1,16 +1,20 @@
 package ticketUNLa;
 
+
+
 public class Entrada {
 	
 	private int numeroEntrada;
+	private Evento evento;
 	private Funcion funcion;
 	private double valorFinalEntrada;
 	private String ubicacionSeleccionada;
 	
-	public Entrada( Funcion funcion,Cliente cliente, String nombreSector, boolean esNumerado, int posicionX, int posicionY) {
+	public Entrada( Evento evento,Cliente cliente, int funcionNumero, String nombreSector, boolean esNumerado, int posicionX, int posicionY) throws Exception{
 		setNumeroEntrada();
-		this.funcion = funcion;
-		setValorFinalEntrada(cliente,nombreSector);
+		this.evento = evento;
+		setFuncion(evento,funcionNumero);
+		valorFinalEntrada=-1;
 		setUbicacionSeleccionada(nombreSector,esNumerado,posicionX,posicionY);
 	}
 
@@ -28,13 +32,30 @@ public class Entrada {
 		this.numeroEntrada = numeroEntrada;
 	}
 
+	public Evento getEvento() {
+		return evento;
+	}
+
+	public void setEvento(Evento evento) {
+		this.evento = evento;
+	}
+
 	public Funcion getFuncion() {
 		return funcion;
 	}
 
-	public void setFuncion(Funcion funcion) {
-		this.funcion = funcion;
+
+
+	public void setFuncion(Evento evento, int funcionNumero) {
+		for(int o=0;o<evento.getFunciones().size();o++) {
+			Funcion funcion=evento.getFunciones().get(o);
+			if(funcion.getFuncionNumero()==funcionNumero) {
+				this.funcion = funcion;
+			}
+		}
 	}
+
+
 
 	public double getValorFinalEntrada() {
 		return valorFinalEntrada;
@@ -44,8 +65,16 @@ public class Entrada {
 		this.valorFinalEntrada = valorFinalEntrada;
 	}
 	
-	public void setValorFinalEntrada(Cliente cliente, String nombreSector) {
+	public void setValorFinalEntrada(Cliente cliente, TipoDescuento descuento, String nombreSector) {
 		//calcular Tarifa
+			for(int p=0;p<evento.getTarifas().size();p++) {
+				Tarifa tarifa=evento.getTarifas().get(p);
+				if(tarifa.getSector().getnombreSector()==nombreSector) {
+					this.valorFinalEntrada=tarifa.calcularPrecioFinal(cliente, descuento)*funcion.getDescuentoDia();
+				}
+			}
+				
+		
 	}
 
 	public String getUbicacionSeleccionada() {
@@ -56,7 +85,7 @@ public class Entrada {
 		this.ubicacionSeleccionada = ubicacionSeleccionada;
 	}
 
-	public void setUbicacionSeleccionada(String nombreSector, boolean esNumerado, int posicionX, int posicionY) {
+	public void setUbicacionSeleccionada(String nombreSector, boolean esNumerado, int posicionX, int posicionY) throws Exception{
 		for(int p=0;p<funcion.getAuditorio().getSectores().size();p++) {
 			Sector sector = funcion.getAuditorio().getSectores().get(p);
 			if(sector.getnombreSector()==nombreSector) {
@@ -65,26 +94,29 @@ public class Entrada {
 						Butaca butaca=sector.getButacas().get(q);
 						if(butaca.getPosicionX()==posicionX&&butaca.getPosicionY()==posicionY) {
 							if(butaca.isOcupado()) {
-								
+								throw new Exception("Error:Butaca ya ocupada.");
 							}
-							else butaca.setOcupado(true);
-							ubicacionSeleccionada="Posicion X =" + posicionX+ "Posicion Y =" +posicionY;
+							else butaca.setOcupado();
+							ubicacionSeleccionada=sector.getnombreSector()+" Posicion X = " + posicionX+ " Posicion Y = " +posicionY;
 						}
 					}
 				}
 				else if(sector.getPopulares().getCantidadMaxima()!=0) {
 					SectorPopular popular= sector.getPopulares();
 					popular.setCantidadMaxima(popular.getCantidadMaxima()-1);
-					ubicacionSeleccionada="Popular";
+					ubicacionSeleccionada=sector.getnombreSector()+"Popular";
 				}
 			}
 		}
 	}
+
+		
+	
 	
 	@Override
 	public String toString() {
-		return "Entrada [numeroEntrada=" + numeroEntrada + ", funcion=" + funcion.getFuncionNumero() + ", valorfinalEntrada="
-				+ valorFinalEntrada + ", ubicacionSeleccionada=" + ubicacionSeleccionada + "]";
+		return "Entrada: numeroEntrada=" + numeroEntrada + " Evento="+evento.getNombre()+", funcion=" + funcion.getFuncionNumero() +"Fecha="+Funciones.traerFechaCorta(funcion.getFecha()) +", valorfinalEntrada="
+				+ valorFinalEntrada + ",\n ubicacionSeleccionada=" + ubicacionSeleccionada;
 	}
 
 	

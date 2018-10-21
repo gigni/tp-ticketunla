@@ -3,20 +3,20 @@ package ticketUNLa;
 
 public class Tarifa {
 	
-	private double precioFinal;
+	private double precioSector;
 	private Sector sector;
 	
-	public Tarifa(double precioFinal, Sector sector) {
+	public Tarifa(double precioSector, Sector sector) {
 		super();
-		this.precioFinal = precioFinal;
+		this.precioSector = precioSector;
 		this.sector = sector;
 	}
 	
-	public double getPrecioFinal() {
-		return precioFinal;
+	public double getPrecioSector() {
+		return precioSector;
 	}
-	public void setPrecioFinal(double precioFinal) {
-		this.precioFinal = precioFinal;
+	public void setPrecioSector(double precioSector) {
+		this.precioSector = precioSector;
 	}
 	public Sector getSector() {
 		return sector;
@@ -27,7 +27,7 @@ public class Tarifa {
 	
 	public double calcularPrecioFinal(Cliente cliente,TipoDescuento descuento) {
 		double precio;
-		precio=descuento.descuentoCategoria(cliente.isEstudiante(),cliente.isJubilado())*precioFinal;
+		precio=descuento.descuentoCategoria(cliente.isEstudiante(),cliente.isJubilado())*precioSector;
 		return precio;
 	}
 
