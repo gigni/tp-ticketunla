@@ -1,5 +1,4 @@
 package test;
-import ticketUNLa.Usuario;
 import java.util.*;
 
 import ticketUNLa.*;
@@ -46,7 +45,7 @@ public class Test {
 				auditorio1.getSectores().add(sector1);
 				auditorio1.getSectores().add(sector2);
 				Evento evento1 = new Evento("juanito y los clonosaurios");
-				Funcion funcion1 = new Funcion(1, Fecha, auditorio1);
+				Funcion funcion1 = new Funcion(1, Fecha, auditorio1,0.50);
 				evento1.getFunciones().add(funcion1);
 				Tarifa tarifa1 = new Tarifa(500, sector1);
 				Tarifa tarifa2 = new Tarifa(1000,sector2);
@@ -56,7 +55,8 @@ public class Test {
 				Cliente cliente1 = new Cliente(false, true, 0, 12345678, "nombre", "apellido", Fecha);
 				
 				//genero un ticket
-				Entrada entrada1 = new Entrada(funcion1,cliente1, "palco", true, 1, 0);
+				Entrada entrada1 = new Entrada(evento1,cliente1, 1, "palco", true, 1, 0);
+				entrada1.setValorFinalEntrada(cliente1,  descuento,"palco");
 				Compra compra = new Compra(cliente1);
 				compra.getListaEntradas().add(entrada1);
 				System.out.println(compra.toString());//falta agregar calculo del precio

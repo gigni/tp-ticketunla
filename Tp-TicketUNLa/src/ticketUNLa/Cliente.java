@@ -24,7 +24,7 @@ public class Cliente extends Usuario {
 	}
 	@Override
 	public String toString() {
-		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+		return "Cliente: dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido ;
 	}
 	
 

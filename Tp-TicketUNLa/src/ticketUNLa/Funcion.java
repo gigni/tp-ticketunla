@@ -6,12 +6,14 @@ public class Funcion {
 	private int funcionNumero;
 	private GregorianCalendar fecha;
 	private Auditorio auditorio;
+	private double descuentoDia;
 	
 
-	public Funcion(int funcionNumero, GregorianCalendar fecha, Auditorio auditorio) {
+	public Funcion(int funcionNumero, GregorianCalendar fecha, Auditorio auditorio,  double descuentoDia) {
 		this.funcionNumero = funcionNumero;
 		this.fecha = fecha;
-		this.auditorio = auditorio;
+		setAuditorio(auditorio);
+		this.descuentoDia = descuentoDia;
 	}
 
 	public int getFuncionNumero() {
@@ -35,7 +37,17 @@ public class Funcion {
 	}
 
 	public void setAuditorio(Auditorio auditorio) {
-		this.auditorio = auditorio;
+		Auditorio aux = new Auditorio();
+		aux=auditorio;
+		this.auditorio = aux;
+	}
+
+	public double getDescuentoDia() {
+		return descuentoDia;
+	}
+
+	public void setDescuentoDia(double descuentoDia) {
+		this.descuentoDia = descuentoDia;
 	}
 
 }

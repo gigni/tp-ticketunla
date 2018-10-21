@@ -30,6 +30,6 @@ public class Compra {
 
 	@Override
 	public String toString() {
-		return "Compra [listaEntradas=" + listaEntradas + ", usuario=" + usuario + "]";
+		return "Compra; "+ listaEntradas + ",\n usuario=" + usuario + "";
 	}
 }

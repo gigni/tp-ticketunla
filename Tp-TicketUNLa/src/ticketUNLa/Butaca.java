@@ -3,12 +3,12 @@ package ticketUNLa;
 public class Butaca {
 	private int posicionX;
 	private int posicionY;
-	private boolean Ocupado;
+	private boolean ocupado;
 
 	public Butaca(int posicionX, int posicionY, boolean ocupado) {
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
-		Ocupado = ocupado;
+		this.ocupado = ocupado;
 	}
 	public int getPosicionX() {
 		return posicionX;
@@ -23,13 +23,13 @@ public class Butaca {
 		this.posicionY = posicionY;
 	}
 	public boolean isOcupado() {
-		return Ocupado;
+		return ocupado;
 	}
-	public void setOcupado(boolean ocupado) {
-		Ocupado = ocupado;
+	public void setOcupado() {
+		ocupado = !ocupado;
 	}
 	@Override
 	public String toString() {
-		return "\nButaca [posicionX=" + posicionX + ", posicionY=" + posicionY + ", Ocupado=" + Ocupado + "]";
+		return "\nButaca [posicionX=" + posicionX + ", posicionY=" + posicionY + ", Ocupado=" + ocupado + "]";
 	}
 }

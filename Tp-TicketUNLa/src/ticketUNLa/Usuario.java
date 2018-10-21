@@ -61,6 +61,6 @@ public long calcularEdad() {
 
 @Override
 public String toString() {
-	return "Usuario [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+	return "Usuario: dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido;
 }
 }
