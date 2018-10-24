@@ -16,7 +16,9 @@ public class Sector {
 	public Sector(String nombreSector, int capacidadSector, int cantidadFilas, int cantidadColumnas, int cantidadPopulares) throws Exception{
 		if(cantidadFilas*cantidadColumnas>capacidadSector) throw new Exception("Error:La cantidad de butacas es superior a la capacidad maxima del sector.");
 		if(cantidadPopulares>capacidadSector)throw new Exception("Error:La cantidad de populares es superior a la capacidad del sector");
-		if(cantidadFilas*cantidadColumnas+cantidadPopulares>capacidadSector) throw new Exception("Error: La cantidad de ubicaciones supera el maximo permitido por el sector");
+		if((cantidadFilas*cantidadColumnas)+cantidadPopulares>capacidadSector) throw new Exception("Error: La cantidad de ubicaciones supera el maximo permitido por el sector");
+		if(cantidadFilas==0&&cantidadColumnas!=0) throw new Exception("Error: Si no hay filas no puede haber columnas");
+		if(cantidadColumnas==0&&cantidadFilas!=0) throw new Exception("Error: Si no hay columnas no puede haber filas");
 		this.nombreSector = nombreSector;
 		this.capacidadSector = capacidadSector;
 		this.cantidadFilas = cantidadFilas;
@@ -25,6 +27,7 @@ public class Sector {
 		this.populares = new SectorPopular(cantidadPopulares);
 		setButacas(cantidadFilas,cantidadColumnas);
 	}
+
 
 	public String getnombreSector() {
 		return nombreSector;
@@ -91,11 +94,31 @@ public class Sector {
 			}
 		}
 	}
+	
+	public Butaca buscarButaca(int posicionX,int posicionY) throws Exception {
+		int p=0;
+		boolean localizado=false;
+		Butaca butaca=null;
+		while(p<getButacas().size()&&localizado==false) {
+			butaca=getButacas().get(p);
+			if(butaca.getPosicionX()==posicionX&&butaca.getPosicionY()==posicionY) {
+				localizado=true;
+			}
+			p++;
+		}
+		if(!localizado) throw new Exception("Error: No existe la butaca");
+		return butaca;
+	}
+	
+	public String imprimirSector() {
+		return "Sector: nombre="+nombreSector+"\nbutacas="+butacas+ "\n"+populares;
+	}
+
 	@Override
 	public String toString() {
-		return "Sector [nombreSector=" + nombreSector + ", capacidadSector=" + capacidadSector + ", cantidadFilas="
+		return "Sector: nombreSector=" + nombreSector + ", capacidadSector=" + capacidadSector + ", cantidadFilas="
 				+ cantidadFilas + ", cantidadColumnas=" + cantidadColumnas + ", cantidadPopulares=" + cantidadPopulares
-				+ ", populares=" + populares + ", butacas=" + butacas + "]";
+				+ ", populares=" + populares + ", butacas=" + butacas + "\n";
 	}
 	
 }

@@ -3,25 +3,25 @@ import java.util.*;
 
 public class Funcion {
 	
-	private int funcionNumero;
+	private long id;
 	private GregorianCalendar fecha;
 	private Auditorio auditorio;
 	private double descuentoDia;
 	
 
-	public Funcion(int funcionNumero, GregorianCalendar fecha, Auditorio auditorio,  double descuentoDia) {
-		this.funcionNumero = funcionNumero;
+	public Funcion(long id, GregorianCalendar fecha, Auditorio auditorio,  double descuentoDia) {
+		this.id = id;
 		this.fecha = fecha;
 		setAuditorio(auditorio);
 		this.descuentoDia = descuentoDia;
 	}
 
-	public int getFuncionNumero() {
-		return funcionNumero;
+	public long getId() {
+		return id;
 	}
 
-	public void setFuncionNumero(int funcionNumero) {
-		this.funcionNumero = funcionNumero;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public GregorianCalendar getFecha() {
@@ -48,6 +48,15 @@ public class Funcion {
 
 	public void setDescuentoDia(double descuentoDia) {
 		this.descuentoDia = descuentoDia;
+	}
+	public String imprimirFuncion() {
+		return "Funcion: id=" + id + ", fecha=" + Funciones.traerFechaCorta(fecha)+ ", descuentoDia=" + descuentoDia + ", auditorio=" + auditorio.imprimirAuditorio() + "\n";
+	}
+
+	@Override
+	public String toString() {
+		return "Funcion: id=" + id + ", fecha=" + Funciones.traerFechaCorta(fecha) + ", auditorio=" + auditorio + ", descuentoDia=" + descuentoDia
+				+ "\n";
 	}
 
 }

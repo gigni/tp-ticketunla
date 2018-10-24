@@ -17,6 +17,6 @@ public class SectorPopular {
 
 	@Override
 	public String toString() {
-		return "Popular [cantidadMaxima=" + cantidadMaxima + "]";
+		return "Popular: cantidadMaxima=" + cantidadMaxima + "\n";
 	}
 }
