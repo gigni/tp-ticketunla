@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 public class Cliente extends Usuario {
 	private boolean estudiante;
 	private boolean jubilado;
-	public Cliente(boolean estudiante, boolean jubilado,long id, int dni, String nombre, String apellido, GregorianCalendar nacimiento) {
+	public Cliente(long id, int dni, String nombre, String apellido, GregorianCalendar nacimiento, boolean estudiante, boolean jubilado) {
 		super(id, dni, nombre, apellido, nacimiento);
 		this.estudiante = estudiante;
 		this.jubilado = jubilado;
@@ -24,7 +24,7 @@ public class Cliente extends Usuario {
 	}
 	@Override
 	public String toString() {
-		return "Cliente: dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido ;
+		return "Cliente: id="+id + " dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido ;
 	}
 	
 

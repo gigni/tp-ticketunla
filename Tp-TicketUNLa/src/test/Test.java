@@ -37,7 +37,7 @@ public class Test {
 		
 
 		
-				try
+				/*try
 				{
 				Sector sector1 = new Sector("pullman", 7, 3, 2, 1);
 				Sector sector2 = new Sector("palco",5,0,0,5);
@@ -52,7 +52,7 @@ public class Test {
 				evento1.getTarifas().add(tarifa1);
 				evento1.getTarifas().add(tarifa2);
 				TipoDescuento descuento = new TipoDescuento(0.10, 0.80);		
-				Cliente cliente1 = new Cliente(false, true, 0, 12345678, "nombre", "apellido", Fecha);
+				Cliente cliente1 = new Cliente(0, 12345678, "nombre", "apellido", Fecha , false, true);
 				
 				//genero un ticket
 				Entrada entrada1 = new Entrada(evento1,cliente1, 1, "palco", true, 1, 0);
@@ -61,13 +61,11 @@ public class Test {
 				compra.getListaEntradas().add(entrada1);
 				System.out.println(compra.toString());//falta agregar calculo del precio
 				
-				System.out.println(tarifa1.calcularPrecioFinal(cliente1, descuento));
-				System.out.println(sector1.toString());
-				System.out.println(sector2.toString());
+				
 				}
 				catch(Exception e){
 					System.out.println("Excepcion:"+ e.getMessage());
-				}
+				}*/
 		
 	}
 

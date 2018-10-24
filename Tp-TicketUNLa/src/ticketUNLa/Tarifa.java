@@ -7,7 +7,6 @@ public class Tarifa {
 	private Sector sector;
 	
 	public Tarifa(double precioSector, Sector sector) {
-		super();
 		this.precioSector = precioSector;
 		this.sector = sector;
 	}
@@ -29,6 +28,14 @@ public class Tarifa {
 		double precio;
 		precio=descuento.descuentoCategoria(cliente.isEstudiante(),cliente.isJubilado())*precioSector;
 		return precio;
+	}
+
+	public String imprimirTarifa() {
+		return "Tarifa: sector="+sector.getnombreSector()+"precioSector="+precioSector+"\n";
+	}
+	@Override
+	public String toString() {
+		return "Tarifa [precioSector=" + precioSector + ", sector=" + sector + "]";
 	}
 
 

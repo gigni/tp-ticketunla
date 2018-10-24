@@ -4,32 +4,50 @@ import java.util.List;
 import ticketUNLa.Entrada;
 
 public class Compra {
-	private List<Entrada> listaEntradas = new ArrayList<Entrada>();
-	private Usuario usuario;
+	private List<Entrada> entradas = new ArrayList<Entrada>();
+	private Cliente cliente;
+	private long id;
 	
 
-	public Compra(Usuario usuario) {
-		this.usuario = usuario;
+	public Compra(long id, Cliente cliente) {
+		this.id = id;
+		this.cliente = cliente;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
-	public List<Entrada> getListaEntradas() {
-		return listaEntradas;
+	public List<Entrada> getEntradas() {
+		return entradas;
 	}
 
-	public void setListaEntradas(List<Entrada> listaEntradas) {
-		this.listaEntradas = listaEntradas;
+	public void setEntradas(List<Entrada> entradas) {
+		this.entradas = entradas;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	public void agregarEntrada(Evento evento,Cliente cliente, int funcionNumero, String nombreSector, boolean esNumerado, int posicionX, int posicionY) throws Exception {
+		long id=-1;
+		if(entradas.isEmpty()) id=1;
+		else id=entradas.get(entradas.size()-1).getId()+1;
+		Entrada entrada = new Entrada(id,evento,cliente,funcionNumero,nombreSector,esNumerado,posicionX,posicionY);
+		entradas.add(entrada);
 	}
 
 	@Override
 	public String toString() {
-		return "Compra; "+ listaEntradas + ",\n usuario=" + usuario + "";
+		return "Compra: "+ entradas + ",\n cliente=" + cliente + "";
 	}
 }

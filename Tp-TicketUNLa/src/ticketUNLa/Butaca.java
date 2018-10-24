@@ -30,6 +30,6 @@ public class Butaca {
 	}
 	@Override
 	public String toString() {
-		return "\nButaca [posicionX=" + posicionX + ", posicionY=" + posicionY + ", Ocupado=" + ocupado + "]";
+		return "Butaca: posicionX=" + posicionX + ", posicionY=" + posicionY + ", Ocupado=" + ocupado + "\n";
 	}
 }

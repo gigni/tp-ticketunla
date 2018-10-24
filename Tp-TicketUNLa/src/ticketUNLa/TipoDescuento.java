@@ -34,6 +34,11 @@ public class TipoDescuento {
 			
 			return descuento;
 	}
+	@Override
+	public String toString() {
+		return "TipoDescuento [descuentoEstudiante=" + descuentoEstudiante + ", descuentoJubilado=" + descuentoJubilado
+				+ "]";
+	}
 
 
 
