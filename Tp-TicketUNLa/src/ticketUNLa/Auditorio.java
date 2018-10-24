@@ -64,10 +64,45 @@ public class Auditorio {
 	}
 	
 	public void agregarSector(String nombreSector, int capacidadSector, int cantidadFilas, int cantidadColumnas, int cantidadPopulares) throws Exception {
-		Sector sector = new Sector(nombreSector, capacidadSector, cantidadFilas, cantidadColumnas, cantidadPopulares);
+		long id=1;
+		if(sectores.isEmpty()) id=1;
+		else id=sectores.get(sectores.size()-1).getId()+1;
+		Sector sector = new Sector(id,nombreSector, capacidadSector, cantidadFilas, cantidadColumnas, cantidadPopulares);
 		sectores.add(sector);
 	}
 	
+	public void modificarSector(long id,String nombreSector, int capacidadSector, int cantidadFilas, int cantidadColumnas, int cantidadPopulares) throws Exception{
+		boolean localizado=false;
+		int p=0;
+		while(p<sectores.size()&&localizado==false) {
+			Sector sector=sectores.get(p);
+			if(sector.getId()==id) {
+				sector.setnombreSector(nombreSector);
+				sector.setCapacidadSector(capacidadSector);
+				sector.setCantidadFilas(cantidadFilas);
+				sector.setCantidadColumnas(cantidadColumnas);
+				sector.setCantidadPopulares(cantidadPopulares);
+				sector.setButacas(cantidadFilas,cantidadColumnas);
+				sector.setCantidadPopulares(cantidadPopulares);
+			}
+			p++;
+		}
+		if(!localizado) throw new Exception("Error: No se encontro el Sector");
+	}
+	
+	public void eliminarSector(long id) throws Exception{
+		boolean localizado=false;
+		int p=0;
+		while(p<sectores.size()&&localizado==false) {
+			Sector sector=sectores.get(p);
+			if(sector.getId()==id) {
+				sectores.remove(p);
+				localizado=true;
+			}
+			p++;
+		}
+		if(!localizado) throw new Exception("Error: No se encontro el Sector");
+	}
 	public Sector buscarSector(String nombreSector) throws Exception {
 		int p=0;
 		boolean localizado=false;
@@ -95,7 +130,7 @@ public class Auditorio {
 	@Override
 	public String toString() {
 		return "Auditorio: id=" + id + ", nombre=" + nombre + ", tipoAuditorio=" + tipoAuditorio + ", direccion="
-				+ direccion + ", sectores=" + sectores + "\n";
+				+ direccion + ",\n sectores=" + sectores + "\n";
 	}
 
 

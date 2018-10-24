@@ -9,6 +9,7 @@ public class SistemaTicketUNLA {
 	List<Evento>eventos = new ArrayList<Evento>();
 	List<Auditorio>auditorios = new ArrayList<Auditorio>();
 	List<Funcion>funciones = new ArrayList<Funcion>();
+	TipoDescuento descuento;
 	
 	public SistemaTicketUNLA(List<Cliente> clientes, List<Compra> compras, List<Evento> eventos,
 			List<Auditorio> auditorios, List<Funcion> funciones) {
@@ -17,10 +18,21 @@ public class SistemaTicketUNLA {
 		this.eventos = eventos;
 		this.auditorios = auditorios;
 		this.funciones = funciones;
+		descuento = new TipoDescuento(-1,-1);
+
 	}
 	
 	public SistemaTicketUNLA() {
-		
+		descuento = new TipoDescuento(-1,-1);
+	}
+	
+	public void setDescuento(double descuentoEstudiante, double descuentoJubilado) {
+		this.descuento.setDescuentoEstudiante(descuentoEstudiante);
+		this.descuento.setDescuentoJubilado(descuentoJubilado);
+	}
+	
+	public TipoDescuento getDescuento() {
+		return descuento;
 	}
 
 	public List<Cliente> getclientes() {
