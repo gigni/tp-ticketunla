@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Sector {
+	private long id;
 	private String nombreSector;
 	private int capacidadSector;
 	private int cantidadFilas;
@@ -13,12 +14,13 @@ public class Sector {
 	private List<Butaca> butacas = new ArrayList<Butaca>();
 	
 
-	public Sector(String nombreSector, int capacidadSector, int cantidadFilas, int cantidadColumnas, int cantidadPopulares) throws Exception{
+	public Sector(long id,String nombreSector, int capacidadSector, int cantidadFilas, int cantidadColumnas, int cantidadPopulares) throws Exception{
 		if(cantidadFilas*cantidadColumnas>capacidadSector) throw new Exception("Error:La cantidad de butacas es superior a la capacidad maxima del sector.");
 		if(cantidadPopulares>capacidadSector)throw new Exception("Error:La cantidad de populares es superior a la capacidad del sector");
 		if((cantidadFilas*cantidadColumnas)+cantidadPopulares>capacidadSector) throw new Exception("Error: La cantidad de ubicaciones supera el maximo permitido por el sector");
 		if(cantidadFilas==0&&cantidadColumnas!=0) throw new Exception("Error: Si no hay filas no puede haber columnas");
 		if(cantidadColumnas==0&&cantidadFilas!=0) throw new Exception("Error: Si no hay columnas no puede haber filas");
+		this.id=id;
 		this.nombreSector = nombreSector;
 		this.capacidadSector = capacidadSector;
 		this.cantidadFilas = cantidadFilas;
@@ -26,6 +28,16 @@ public class Sector {
 		this.cantidadPopulares = cantidadPopulares;
 		this.populares = new SectorPopular(cantidadPopulares);
 		setButacas(cantidadFilas,cantidadColumnas);
+	}
+
+
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 
