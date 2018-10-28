@@ -102,7 +102,7 @@ public class Entrada {
 	
 	@Override
 	public String toString() {
-		return "Entrada: numeroEntrada=" + id + " Evento="+evento.getNombre()+", funcion=" + funcion.getId() +"Fecha="+Funciones.traerFechaCorta(funcion.getFecha()) +", valorfinalEntrada="
+		return "\nEntrada: numeroEntrada=" + id + " Evento="+evento.getNombre()+", funcion=" + funcion.getId() +"Fecha="+Funciones.traerFechaCorta(funcion.getFecha()) +", valorfinalEntrada="
 				+ valorFinalEntrada + ",\n ubicacionSeleccionada=" + ubicacionSeleccionada;
 	}
 

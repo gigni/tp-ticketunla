@@ -15,7 +15,7 @@ public class TestCompra {
 			Auditorio auditorio=sis.buscarAuditorio(1);
 			auditorio.agregarSector("pullman", 9, 4, 2, 1);
 			auditorio.agregarSector("palco", 5, 5, 1, 0);
-			sis.agregarEvento("juanito y los clonosaurios");
+			sis.agregarEvento("juanito y los clonosaurios",1,0.7);
 			System.out.println(sis.geteventos());
 			Evento evento=sis.buscarEvento(1);
 			GregorianCalendar fecha = new GregorianCalendar (2018,9,21,20,00);
@@ -24,7 +24,6 @@ public class TestCompra {
 			evento.agregarTarifa(1000,auditorio.buscarSector("palco"));
 			GregorianCalendar fechaNacimiento = new GregorianCalendar(1998,04,21);
 			sis.agregarCliente(12345678, "nombre", "apellido", fechaNacimiento, false, true);
-			sis.setDescuento(1, 0.5);
 			//			System.out.println(sis.getclientes());
 			Cliente cliente=sis.buscarCliente(1);
 			
@@ -33,7 +32,7 @@ public class TestCompra {
 			System.out.println(sis.imprimirEventos());
 			sis.agregarCompra(cliente);
 			Compra compra = sis.buscarCompra(1);
-			compra.agregarEntrada(evento, cliente, 1, "palco", true, 1, 0,sis.getDescuento());
+			compra.agregarEntrada(evento, cliente, 1, "palco", true, 1, 0);
 			System.out.println(sis.buscarCompra(1));
 			
 			//intento comprar otra entrada con misma ubicacion
@@ -41,7 +40,7 @@ public class TestCompra {
 			System.out.println(sis.imprimirEventos());
 			sis.agregarCompra(cliente);
 			compra = sis.buscarCompra(1);
-			compra.agregarEntrada(evento, cliente, 1, "palco", true, 1, 0,sis.getDescuento());
+			compra.agregarEntrada(evento, cliente, 1, "palco", true, 1, 0);
 			System.out.println(sis.buscarCompra(1));
 		}
 		catch(Exception e){

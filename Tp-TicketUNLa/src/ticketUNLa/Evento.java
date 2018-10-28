@@ -10,12 +10,13 @@ public class Evento {
 	private String nombre;
 	private List<Funcion>funciones = new ArrayList<Funcion>();
 	private List<Tarifa> tarifas = new ArrayList<Tarifa>();
-	
+	TipoDescuento descuento;
 
 
-	public Evento(long id, String nombre) {
+	public Evento(long id, String nombre, double descuentoEstudiante, double descuentoJubilado) {
 		this.id = id;
 		this.nombre = nombre;
+		this.descuento = new TipoDescuento(descuentoEstudiante,descuentoJubilado);
 	}
 
 	public long getId() {
@@ -48,6 +49,15 @@ public class Evento {
 
 	public void setTarifas(List<Tarifa> tarifas) {
 		this.tarifas = tarifas;
+	}
+	
+	public void setDescuento(double descuentoEstudiante, double descuentoJubilado) {
+		this.descuento.setDescuentoEstudiante(descuentoEstudiante);
+		this.descuento.setDescuentoJubilado(descuentoJubilado);
+	}
+	
+	public TipoDescuento getDescuento() {
+		return descuento;
 	}
 	
 	public void agregarFuncion(GregorianCalendar fecha, Auditorio auditorio,  double descuentoDia) {
