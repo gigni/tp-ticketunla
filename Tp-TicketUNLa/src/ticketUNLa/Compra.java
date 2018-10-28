@@ -38,17 +38,27 @@ public class Compra {
 		this.id = id;
 	}
 	
-	public void agregarEntrada(Evento evento,Cliente cliente, int funcionNumero, String nombreSector, boolean esNumerado, int posicionX, int posicionY, TipoDescuento descuento) throws Exception {
+	public void agregarEntrada(Evento evento,Cliente cliente, int funcionNumero, String nombreSector, boolean esNumerado, int posicionX, int posicionY) throws Exception {
 		long id=-1;
 		if(entradas.isEmpty()) id=1;
 		else id=entradas.get(entradas.size()-1).getId()+1;
 		Entrada entrada = new Entrada(id,evento,cliente,funcionNumero,nombreSector,esNumerado,posicionX,posicionY);
-		entrada.setValorFinalEntrada(cliente,descuento , nombreSector);
+		entrada.setValorFinalEntrada(cliente,evento.getDescuento() , nombreSector);
 		entradas.add(entrada);
+	}
+	
+	public void eliminarEntrada(long id) {
+		boolean localizado=false;
+		int p=0;
+		while(p<this.entradas.size()&&!localizado) {
+			if(entradas.get(p).getId()==id) entradas.remove(p);
+			p++;
+		}
+		
 	}
 
 	@Override
 	public String toString() {
-		return "Compra: "+ entradas + ",\n cliente=" + cliente + "";
+		return "Compra: cliente=" + cliente+" Entradas:"+ entradas;
 	}
 }
