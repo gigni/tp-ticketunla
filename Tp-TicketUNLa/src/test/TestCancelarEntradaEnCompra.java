@@ -1,7 +1,5 @@
 package test;
-import ticketUNLa.Entrada;
-import ticketUNLa.Evento;
-import ticketUNLa.SistemaTicketUNLA;
+import ticketUNLa.*;
 
 import java.util.GregorianCalendar;
 
@@ -54,7 +52,9 @@ public class TestCancelarEntradaEnCompra {
 			System.out.println(sis.buscarCompra(1));
 
 			
-			
+			System.out.println("\n\n##################################vuelvo a crear la compra  ########################");
+			compra.agregarEntrada(evento, cliente, 1, "palco", true, 2, 0);
+			System.out.println(sis.buscarCompra(1));
 		}
 		catch(Exception e){
 			System.out.println("Excepcion:"+ e.getMessage());

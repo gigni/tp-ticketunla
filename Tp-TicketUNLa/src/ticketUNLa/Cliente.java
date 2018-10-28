@@ -24,7 +24,7 @@ public class Cliente extends Usuario {
 	}
 	@Override
 	public String toString() {
-		return "Cliente: id="+id + " dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido ;
+		return "\nCliente: id="+id + " dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", Fecha Nacimiento:" + Funciones.traerFechaCorta(nacimiento) + ", Es jubilado:" + jubilado + ", Es estudiante:" + estudiante + "\n";
 	}
 	
 

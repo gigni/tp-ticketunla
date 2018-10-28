@@ -47,15 +47,20 @@ public class Compra {
 		entradas.add(entrada);
 	}
 	
-	public void eliminarEntrada(long id) {
+	public void eliminarEntrada(long id) throws Exception {
 		boolean localizado=false;
 		int p=0;
 		while(p<this.entradas.size()&&!localizado) {
-			if(entradas.get(p).getId()==id) entradas.remove(p);
+			if(entradas.get(p).getId()==id) { 
+				entradas.get(p).quitarReserva();
+				entradas.remove(p);
+				
+			}
 			p++;
 		}
 		
 	}
+	
 
 	@Override
 	public String toString() {

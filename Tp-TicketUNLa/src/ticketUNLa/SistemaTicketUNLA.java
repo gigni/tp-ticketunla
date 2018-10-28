@@ -71,7 +71,7 @@ public class SistemaTicketUNLA {
 		long id=-1;
 		if(clientes.isEmpty()) id=1;
 		else id=clientes.get(clientes.size()-1).getId()+1;
-		Cliente cliente = new Cliente(id, dni, apellido, apellido, nacimiento, esEstudiante, esJubilado);
+		Cliente cliente = new Cliente(id, dni, nombre, apellido, nacimiento, esEstudiante, esJubilado);
 		clientes.add(cliente);
 	}
 	

@@ -8,7 +8,10 @@ public class Entrada {
 	private Evento evento;
 	private Funcion funcion;
 	private double valorFinalEntrada;
-	private String ubicacionSeleccionada;
+	private String nombreSector;
+	private boolean esNumerado;
+	private int posicionX;
+	private int posicionY;
 	
 	public Entrada( long id, Evento evento,Cliente cliente, int funcionNumero, String nombreSector, boolean esNumerado, int posicionX, int posicionY) throws Exception{
 		this.id=id;
@@ -73,37 +76,50 @@ public class Entrada {
 		
 	}
 
-	public String getUbicacionSeleccionada() {
-		return ubicacionSeleccionada;
-	}
 
-	public void setUbicacionSeleccionada(String ubicacionSeleccionada) {
-		this.ubicacionSeleccionada = ubicacionSeleccionada;
-	}
-
+	// funcion para setear una butaca o sector popular
 	public void setUbicacionSeleccionada(String nombreSector, boolean esNumerado, int posicionX, int posicionY) throws Exception{
-		Sector sector = funcion.getAuditorio().buscarSector(nombreSector);
+		Sector sector = funcion.getAuditorio().buscarSector(nombreSector);//busca el nombre del sector
 		if(esNumerado) {
 			Butaca butaca = sector.buscarButaca(posicionX, posicionY);
-			if(butaca.isOcupado()) throw new Exception("Error:Butaca ya ocupada.");
+			if(butaca.isOcupado()) throw new Exception("Error:Butaca ya ocupada.");//excepcion para butacas ocupadas
 			butaca.setOcupado();
-			ubicacionSeleccionada=sector.getnombreSector()+" Posicion X = " + posicionX+ " Posicion Y = " +posicionY;
+			this.nombreSector=sector.getnombreSector();
+			this.esNumerado=esNumerado;
+			this.posicionX = posicionX;
+			this.posicionY = posicionY;
 		}
 		else {
 			SectorPopular popular= sector.getPopulares();
 			if(popular.getCantidadMaxima()==0) throw new Exception("Error: No queda lugar en popular");
 			popular.setCantidadMaxima(popular.getCantidadMaxima()-1);
-			ubicacionSeleccionada=sector.getnombreSector()+"Popular";
 		}
 	}
 
 		
+	public void quitarReserva () throws Exception{
+		Sector sector = funcion.getAuditorio().buscarSector(nombreSector);
+		if(this.esNumerado) {
+			Butaca butaca = sector.buscarButaca(posicionX, posicionY);
+			butaca.setOcupado();
+		}
+		else {
+			SectorPopular popular= sector.getPopulares();
+			popular.setCantidadMaxima(popular.getCantidadMaxima()+1);
+		}
+	}
+	
 	
 	
 	@Override
 	public String toString() {
-		return "\nEntrada: numeroEntrada=" + id + " Evento="+evento.getNombre()+", funcion=" + funcion.getId() +"Fecha="+Funciones.traerFechaCorta(funcion.getFecha()) +", valorfinalEntrada="
-				+ valorFinalEntrada + ",\n ubicacionSeleccionada=" + ubicacionSeleccionada;
+		String imprimir= "\nEntrada: numeroEntrada=" + id + " Evento="+evento.getNombre()+", funcion=" + funcion.getId() +"Fecha="+Funciones.traerFechaCorta(funcion.getFecha()) +", valorfinalEntrada="
+				+ valorFinalEntrada + " Sector: "+ nombreSector;
+		 if (esNumerado) {
+			 imprimir=imprimir+" Posicion X: "+posicionX +"Posicion Y: "+ posicionY;
+			 }
+		 else imprimir=imprimir+" Sector Popular";
+		 return imprimir;
 	}
 
 	
