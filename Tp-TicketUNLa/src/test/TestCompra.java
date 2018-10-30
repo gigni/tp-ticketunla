@@ -23,7 +23,7 @@ public class TestCompra {
 			evento.agregarTarifa(500, auditorio.buscarSector("pullman"));
 			evento.agregarTarifa(1000,auditorio.buscarSector("palco"));
 			GregorianCalendar fechaNacimiento = new GregorianCalendar(1998,04,21);
-			sis.agregarCliente(12345678, "nombre", "apellido", fechaNacimiento, false, true);
+			sis.agregarCliente(12345678, "walter", "medina", fechaNacimiento, false, true);
 			//			System.out.println(sis.getclientes());
 			Cliente cliente=sis.buscarCliente(1);
 			

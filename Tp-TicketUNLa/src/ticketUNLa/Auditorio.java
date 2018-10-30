@@ -129,7 +129,7 @@ public class Auditorio {
 
 	@Override
 	public String toString() {
-		return "Auditorio: id=" + id + ", nombre=" + nombre + ", tipoAuditorio=" + tipoAuditorio + ", direccion="
+		return "\nAuditorio: id=" + id + ", nombre=" + nombre + ", tipoAuditorio=" + tipoAuditorio + ", direccion="
 				+ direccion + ",\n sectores=" + sectores + "\n";
 	}
 
