@@ -79,9 +79,9 @@ public class Entrada {
 
 	// funcion para setear una butaca o sector popular
 	public void setUbicacionSeleccionada(String nombreSector, boolean esNumerado, int posicionX, int posicionY) throws Exception{
-		Sector sector = funcion.getAuditorio().buscarSector(nombreSector);//busca el nombre del sector
+		Sector sector = funcion.getAuditorio().traerSector(nombreSector);//busca el nombre del sector
 		if(esNumerado) {
-			Butaca butaca = sector.buscarButaca(posicionX, posicionY);
+			Butaca butaca = sector.traerButaca(posicionX, posicionY);
 			if(butaca.isOcupado()) throw new Exception("Error:Butaca ya ocupada.");//excepcion para butacas ocupadas
 			butaca.setOcupado();
 			this.nombreSector=sector.getnombreSector();
@@ -93,14 +93,17 @@ public class Entrada {
 			SectorPopular popular= sector.getPopulares();
 			if(popular.getCantidadMaxima()==0) throw new Exception("Error: No queda lugar en popular");
 			popular.setCantidadMaxima(popular.getCantidadMaxima()-1);
+			this.esNumerado=false;
+			this.posicionX=-1;
+			this.posicionY=-1;
 		}
 	}
 
 		
 	public void quitarReserva () throws Exception{
-		Sector sector = funcion.getAuditorio().buscarSector(nombreSector);
+		Sector sector = funcion.getAuditorio().traerSector(nombreSector);
 		if(this.esNumerado) {
-			Butaca butaca = sector.buscarButaca(posicionX, posicionY);
+			Butaca butaca = sector.traerButaca(posicionX, posicionY);
 			butaca.setOcupado();
 		}
 		else {

@@ -107,7 +107,7 @@ public class Sector {
 		}
 	}
 	
-	public Butaca buscarButaca(int posicionX,int posicionY) throws Exception {
+	public Butaca traerButaca(int posicionX,int posicionY) throws Exception {
 		int p=0;
 		boolean localizado=false;
 		Butaca butaca=null;

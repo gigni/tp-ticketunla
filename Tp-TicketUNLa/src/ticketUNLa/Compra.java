@@ -54,7 +54,7 @@ public class Compra {
 			if(entradas.get(p).getId()==id) { 
 				entradas.get(p).quitarReserva();
 				entradas.remove(p);
-				
+				localizado=true;
 			}
 			p++;
 		}

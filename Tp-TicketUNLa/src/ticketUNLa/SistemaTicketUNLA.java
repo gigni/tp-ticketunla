@@ -8,7 +8,7 @@ public class SistemaTicketUNLA {
 	List<Compra>compras = new ArrayList<Compra>();
 	List<Evento>eventos = new ArrayList<Evento>();
 	List<Auditorio>auditorios = new ArrayList<Auditorio>();
-	List<Funcion>funciones = new ArrayList<Funcion>();
+	
 	
 	
 	public SistemaTicketUNLA(List<Cliente> clientes, List<Compra> compras, List<Evento> eventos,
@@ -17,8 +17,6 @@ public class SistemaTicketUNLA {
 		this.compras = compras;
 		this.eventos = eventos;
 		this.auditorios = auditorios;
-		this.funciones = funciones;
-
 	}
 	
 	public SistemaTicketUNLA() {
@@ -57,14 +55,6 @@ public class SistemaTicketUNLA {
 
 	public void setauditorios(List<Auditorio> auditorios) {
 		this.auditorios = auditorios;
-	}
-
-	public List<Funcion> getfunciones() {
-		return funciones;
-	}
-
-	public void setfunciones(List<Funcion> funciones) {
-		this.funciones = funciones;
 	}
 	
 	public void agregarCliente(int dni, String nombre, String apellido, GregorianCalendar nacimiento, boolean esEstudiante, boolean esJubilado) {
@@ -108,7 +98,7 @@ public class SistemaTicketUNLA {
 		if(!localizado) throw new Exception("Error: No se encontro el Cliente");
 	}
 	
-	public Cliente buscarCliente(long id) throws Exception {
+	public Cliente traerCliente(long id) throws Exception {
 		Cliente cliente = null;
 		boolean localizado=false;
 		int p=0;
@@ -146,7 +136,7 @@ public class SistemaTicketUNLA {
 		if(!localizado) throw new Exception("Error: No se encontro la Compra");
 	}
 	
-	public Compra buscarCompra(long id) throws Exception{
+	public Compra traerCompra(long id) throws Exception{
 		Compra compra=null;
 		boolean localizado=false;
 		int p=0;
@@ -199,7 +189,7 @@ public class SistemaTicketUNLA {
 		if(!localizado) throw new Exception("Error: No se encontro el Auditorio");
 	}
 	
-	public Auditorio buscarAuditorio(long id) throws Exception{
+	public Auditorio traerAuditorio(long id) throws Exception{
 		Auditorio auditorio=null;
 		boolean localizado=false;
 		int p=0;
@@ -250,7 +240,7 @@ public class SistemaTicketUNLA {
 		if(!localizado) throw new Exception("Error: No se encontro el Evento");
 	}
 	
-	public Evento buscarEvento(long id) throws Exception{
+	public Evento traerEvento(long id) throws Exception{
 		Evento evento = null;
 		boolean localizado=false;
 		int p=0;
