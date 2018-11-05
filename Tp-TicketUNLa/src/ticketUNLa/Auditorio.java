@@ -103,7 +103,7 @@ public class Auditorio {
 		}
 		if(!localizado) throw new Exception("Error: No se encontro el Sector");
 	}
-	public Sector buscarSector(String nombreSector) throws Exception {
+	public Sector traerSector(String nombreSector) throws Exception {
 		int p=0;
 		boolean localizado=false;
 		Sector sector= null;
