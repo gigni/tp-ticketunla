@@ -111,7 +111,7 @@ public class Sector {
 		int p=0;
 		boolean localizado=false;
 		Butaca butaca=null;
-		while(p<getButacas().size()&&localizado==false) {
+		while(p<getButacas().size()&&!localizado) {
 			butaca=getButacas().get(p);
 			if(butaca.getPosicionX()==posicionX&&butaca.getPosicionY()==posicionY) {
 				localizado=true;
@@ -120,6 +120,17 @@ public class Sector {
 		}
 		if(!localizado) throw new Exception("Error: No existe la butaca");
 		return butaca;
+	}
+	
+	public int ubicacionesLibres() {
+		int sum=0;
+		for(int i=0;i<getButacas().size();i++) {
+			if(!getButacas().get(i).isOcupado()) {
+				sum=sum+1;
+			}
+		}
+		sum=sum+getPopulares().getCantidadMaxima();
+		return sum;
 	}
 	
 	public String imprimirSector() {

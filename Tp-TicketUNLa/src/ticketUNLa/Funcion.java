@@ -13,7 +13,7 @@ public class Funcion {
 		this.id = id;
 		this.fecha = fecha;
 		setAuditorio(auditorio);
-		this.descuentoDia = descuentoDia;
+		this.descuentoDia = 1-descuentoDia;
 	}
 
 	public long getId() {
@@ -49,13 +49,17 @@ public class Funcion {
 	public void setDescuentoDia(double descuentoDia) {
 		this.descuentoDia = descuentoDia;
 	}
+	
+	public int ubicacionesLibres() {
+		return getAuditorio().ubicacionesLibres();
+	}
 	public String imprimirFuncion() {
-		return "Funcion: id=" + id + ", fecha=" + Funciones.traerFechaCorta(fecha)+ ", descuentoDia=" + descuentoDia + ", auditorio=" + auditorio.imprimirAuditorio() + "\n";
+		return "Funcion: id=" + id + ", fecha=" + Funciones.traerFechaCortaHora(fecha)+ ", descuentoDia=" + descuentoDia + ", auditorio=" + auditorio.imprimirAuditorio() + "\n";
 	}
 
 	@Override
 	public String toString() {
-		return "Funcion: id=" + id + ", fecha=" + Funciones.traerFechaCorta(fecha) + ", auditorio=" + auditorio + ", descuentoDia=" + descuentoDia
+		return "Funcion: id=" + id + ", fecha=" + Funciones.traerFechaCortaHora(fecha) + ", auditorio=" + auditorio + ", descuentoDia=" + descuentoDia
 				+ "\n";
 	}
 

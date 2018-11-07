@@ -19,7 +19,7 @@ public class TestCompra {
 			System.out.println(sis.geteventos());
 			Evento evento=sis.traerEvento(1);
 			GregorianCalendar fecha = new GregorianCalendar (2018,9,21,20,00);
-			evento.agregarFuncion(fecha, auditorio, 0.5);
+			evento.agregarFuncion(fecha, auditorio, 0.5); //fecha de la funcion,descuento por dia.
 			evento.agregarTarifa(500, auditorio.traerSector("pullman"));
 			evento.agregarTarifa(1000,auditorio.traerSector("palco"));
 			GregorianCalendar fechaNacimiento = new GregorianCalendar(1998,04,21);
@@ -42,6 +42,7 @@ public class TestCompra {
 			compra = sis.traerCompra(1);
 			compra.agregarEntrada(evento, cliente, 1, "palco", true, 1, 0);
 			System.out.println(sis.traerCompra(1));
+			
 		}
 		catch(Exception e){
 			System.out.println("Excepcion:"+ e.getMessage());

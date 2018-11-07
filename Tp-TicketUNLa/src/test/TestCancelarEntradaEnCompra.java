@@ -52,9 +52,11 @@ public class TestCancelarEntradaEnCompra {
 			System.out.println(sis.traerCompra(1));
 
 			
-			System.out.println("\n\n##################################vuelvo a crear la compra  ########################");
+			System.out.println("\n\n################################## compro otra entrada  ########################");
 			compra.agregarEntrada(evento, cliente, 1, "palco", true, 2, 0);
 			System.out.println(sis.traerCompra(1));
+			
+			System.out.println(sis.generarReporteXFuncion(1));
 		}
 		catch(Exception e){
 			System.out.println("Excepcion:"+ e.getMessage());

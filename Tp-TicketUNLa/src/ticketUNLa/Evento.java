@@ -71,7 +71,7 @@ public class Evento {
 	public void modificarFuncion(long id, GregorianCalendar fecha, Auditorio auditorio,  double descuentoDia) throws Exception {
 		boolean localizado=false;
 		int p=0;
-		while(p<funciones.size()&&localizado==false) {
+		while(p<funciones.size()&&!localizado) {
 			Funcion funcion=funciones.get(p);
 			if(funcion.getId()==id) {
 				localizado=true;
@@ -86,7 +86,7 @@ public class Evento {
 	public void eliminarFuncion(long id) throws Exception {
 		boolean localizado=false;
 		int p=0;
-		while(p<funciones.size()&&localizado==false) {
+		while(p<funciones.size()&&!localizado) {
 			Funcion funcion=funciones.get(p);
 			if(funcion.getId()==id) {
 				localizado=true;
@@ -96,10 +96,37 @@ public class Evento {
 		if(!localizado) throw new Exception("Error: No se encontro el Evento");
 	}
 	
+	public Funcion traerFuncion(long id) throws Exception{
+		Funcion funcion = null;
+		boolean localizado=false;
+		int p=0;
+		while(p<funciones.size()&&!localizado) {
+			funcion=funciones.get(p);
+			if(funcion.getId()==id) {
+				localizado=true;
+			}
+			p++;
+		}
+		if(!localizado) throw new Exception("Error: No se encontro la Funcion");
+		return funcion;
+	}
+	
 	public void agregarTarifa(double precioSector, Sector sector) {
 		Tarifa tarifa = new Tarifa(precioSector,sector);
 		tarifas.add(tarifa);
 	}
+	
+	public int ubicacionesLibresAuditorio(long idAuditorio) throws Exception{
+		int reporte=0;
+		for(int i=0;i<funciones.size();i++) {
+			if(funciones.get(i).getAuditorio().getId()==idAuditorio) {
+				reporte=reporte+funciones.get(i).ubicacionesLibres();
+			}
+		}
+		if(reporte==0) throw new Exception ("Error: Este evento no se desarrollo en ese auditorio");
+		return reporte;
+	}
+	
 	public String imprimirFunciones() {
 		String funciones="";
 		for(int p=0;p<this.funciones.size();p++) {

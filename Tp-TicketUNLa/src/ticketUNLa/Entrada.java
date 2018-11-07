@@ -64,11 +64,65 @@ public class Entrada {
 		this.valorFinalEntrada = valorFinalEntrada;
 	}
 	
+	public String getNombreSector() {
+		return nombreSector;
+	}
+
+
+
+	public void setNombreSector(String nombreSector) {
+		this.nombreSector = nombreSector;
+	}
+
+
+
+	public boolean isEsNumerado() {
+		return esNumerado;
+	}
+
+
+
+	public void setEsNumerado(boolean esNumerado) {
+		this.esNumerado = esNumerado;
+	}
+
+
+
+	public int getPosicionX() {
+		return posicionX;
+	}
+
+
+
+	public void setPosicionX(int posicionX) {
+		this.posicionX = posicionX;
+	}
+
+
+
+	public int getPosicionY() {
+		return posicionY;
+	}
+
+
+
+	public void setPosicionY(int posicionY) {
+		this.posicionY = posicionY;
+	}
+
+
+
+	public void setFuncion(Funcion funcion) {
+		this.funcion = funcion;
+	}
+
+
+
 	public void setValorFinalEntrada(Cliente cliente, TipoDescuento descuento, String nombreSector) {
 		//calcular Tarifa
 			for(int p=0;p<evento.getTarifas().size();p++) {
 				Tarifa tarifa=evento.getTarifas().get(p);
-				if(tarifa.getSector().getnombreSector()==nombreSector) {
+				if(tarifa.getSector().getnombreSector().equals(nombreSector)) {
 					this.valorFinalEntrada=tarifa.calcularPrecioFinal(cliente, descuento)*funcion.getDescuentoDia();
 				}
 			}
@@ -116,10 +170,10 @@ public class Entrada {
 	
 	@Override
 	public String toString() {
-		String imprimir= "\nEntrada: numeroEntrada=" + id + " Evento="+evento.getNombre()+", funcion=" + funcion.getId() +"Fecha="+Funciones.traerFechaCorta(funcion.getFecha()) +", valorfinalEntrada="
+		String imprimir= "\nEntrada: numeroEntrada=" + id + " Evento="+evento.getNombre()+", funcion=" + funcion.getId() +"Fecha="+Funciones.traerFechaCortaHora(funcion.getFecha()) +", valorfinalEntrada="
 				+ valorFinalEntrada + " Sector: "+ nombreSector;
 		 if (esNumerado) {
-			 imprimir=imprimir+" Posicion X: "+posicionX +"Posicion Y: "+ posicionY;
+			 imprimir=imprimir+" Posicion X: "+posicionX +" Posicion Y: "+ posicionY;
 			 }
 		 else imprimir=imprimir+" Sector Popular";
 		 return imprimir;
