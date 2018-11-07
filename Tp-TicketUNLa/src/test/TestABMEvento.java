@@ -27,8 +27,8 @@ public class TestABMEvento {
 			auditorio2.agregarSector("platea", 15, 3, 5, 0);
 			auditorio3.agregarSector("popular", 5, 0, 0, 5);
 			auditorio3.agregarSector("plate", 3, 3, 1, 0);
-			GregorianCalendar f1 = new GregorianCalendar(2018,11,19);	
-			GregorianCalendar f2 = new GregorianCalendar(2018,10,31);
+			GregorianCalendar f1 = new GregorianCalendar(2018,11,19,20,30,00);	
+			GregorianCalendar f2 = new GregorianCalendar(2018,10,30,17,00,00);
 			Evento evento = e.traerEvento(1);
 			evento.agregarFuncion(f1,auditorio, 0.05);
 			evento.agregarTarifa(230,auditorio.traerSector("pullman"));
@@ -37,11 +37,8 @@ public class TestABMEvento {
 			evento2.agregarTarifa(450, auditorio2.traerSector("popular"));
 			Evento evento3 = e.traerEvento(3);
 			evento3.agregarFuncion(f1, auditorio3, 0.25);
-			evento3.agregarTarifa(400, auditorio3.traerSector("pullman"));
+			evento3.agregarTarifa(400, auditorio3.traerSector("plate"));
 			System.out.println(e.imprimirEventos());
-			
-			
-			
 			
 		}
 		catch(Exception e){

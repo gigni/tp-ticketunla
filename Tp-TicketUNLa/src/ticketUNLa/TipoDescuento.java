@@ -5,8 +5,8 @@ public class TipoDescuento {
 	private double descuentoJubilado;
 	public TipoDescuento(double descuentoEstudiante, double descuentoJubilado) {
 		super();
-		this.descuentoEstudiante = descuentoEstudiante;
-		this.descuentoJubilado = descuentoJubilado;
+		this.descuentoEstudiante = 1-descuentoEstudiante;
+		this.descuentoJubilado = 1-descuentoJubilado;
 	}
 	public double getDescuentoEstudiante() {
 		return descuentoEstudiante;
@@ -25,10 +25,10 @@ public class TipoDescuento {
 	public double descuentoCategoria(boolean estudiante, boolean jubilado){
 		double descuento;
 		descuento=0;
-			if(estudiante==true) {
+			if(estudiante) {
 				descuento=descuentoEstudiante;
 			}
-			if(jubilado==true) {
+			if(jubilado) {
 				descuento=descuentoJubilado;
 			}
 			

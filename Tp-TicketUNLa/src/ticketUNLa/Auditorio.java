@@ -74,7 +74,7 @@ public class Auditorio {
 	public void modificarSector(long id,String nombreSector, int capacidadSector, int cantidadFilas, int cantidadColumnas, int cantidadPopulares) throws Exception{
 		boolean localizado=false;
 		int p=0;
-		while(p<sectores.size()&&localizado==false) {
+		while(p<sectores.size()&&!localizado) {
 			Sector sector=sectores.get(p);
 			if(sector.getId()==id) {
 				sector.setnombreSector(nombreSector);
@@ -93,7 +93,7 @@ public class Auditorio {
 	public void eliminarSector(long id) throws Exception{
 		boolean localizado=false;
 		int p=0;
-		while(p<sectores.size()&&localizado==false) {
+		while(p<sectores.size()&&!localizado) {
 			Sector sector=sectores.get(p);
 			if(sector.getId()==id) {
 				sectores.remove(p);
@@ -103,18 +103,28 @@ public class Auditorio {
 		}
 		if(!localizado) throw new Exception("Error: No se encontro el Sector");
 	}
+	
 	public Sector traerSector(String nombreSector) throws Exception {
 		int p=0;
 		boolean localizado=false;
 		Sector sector= null;
-		while(p<getSectores().size()&&localizado==false) {
+		while(p<getSectores().size()&&!localizado) {
 			sector = getSectores().get(p);
-			if(sector.getnombreSector()==nombreSector) localizado=true;
+			if(sector.getnombreSector().equals(nombreSector)) localizado=true;
 			p++;
 		}
-		if(localizado=false) throw new Exception("Error: No se encontro el sector.");
+		if(!localizado) throw new Exception("Error: No se encontro el sector.");
 		return sector;
 	}
+	
+	public int ubicacionesLibres() {
+		int sum=0;
+		for(int i=0;i<getSectores().size();i++) {
+			sum=sum+getSectores().get(i).ubicacionesLibres();
+		}
+		return sum;
+	}
+	
 	public String imprimirSectores() {
 		String sectores="";
 		for(int p=0;p<this.sectores.size();p++) {

@@ -4,14 +4,15 @@ import java.util.List;
 import ticketUNLa.Entrada;
 
 public class Compra {
+	private long id;
 	private List<Entrada> entradas = new ArrayList<Entrada>();
 	private Cliente cliente;
-	private long id;
-	
+	private boolean pagada;
 
 	public Compra(long id, Cliente cliente) {
 		this.id = id;
 		this.cliente = cliente;
+		setPagada(false);
 	}
 
 	public Cliente getCliente() {
@@ -38,6 +39,18 @@ public class Compra {
 		this.id = id;
 	}
 	
+	public boolean isPagada() {
+		return pagada;
+	}
+
+	public void setPagada(boolean pagada) {
+		this.pagada = pagada;
+	}
+	
+	public void setPago() {
+		pagada=true;
+	}
+
 	public void agregarEntrada(Evento evento,Cliente cliente, int funcionNumero, String nombreSector, boolean esNumerado, int posicionX, int posicionY) throws Exception {
 		long id=-1;
 		if(entradas.isEmpty()) id=1;

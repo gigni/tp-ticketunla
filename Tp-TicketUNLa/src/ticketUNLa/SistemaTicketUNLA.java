@@ -68,7 +68,7 @@ public class SistemaTicketUNLA {
 	public void modificarCliente(long id, int dni, String nombre, String apellido, GregorianCalendar nacimiento, boolean esEstudiante, boolean esJubilado) throws Exception {	//A partir del id modifico los demas datos del Cliente. Id es lo unico no permito modifcar
 		boolean localizado=false;
 		int p=0;
-		while(p<clientes.size()&&localizado==false) {
+		while(p<clientes.size()&&!localizado) {
 			Cliente cliente=clientes.get(p);
 			if(cliente.getId()==id) {
 				localizado=true;
@@ -87,7 +87,7 @@ public class SistemaTicketUNLA {
 	public void eliminarCliente (long id) throws Exception {
 		boolean localizado=false;
 		int p=0;
-		while(p<clientes.size()&&localizado==false) {
+		while(p<clientes.size()&&!localizado) {
 			Cliente cliente=clientes.get(p);
 			if(cliente.getId()==id) {
 				clientes.remove(p);
@@ -102,7 +102,7 @@ public class SistemaTicketUNLA {
 		Cliente cliente = null;
 		boolean localizado=false;
 		int p=0;
-		while(p<clientes.size()&&localizado==false) {
+		while(p<clientes.size()&&!localizado) {
 			cliente=clientes.get(p);
 			if(cliente.getId()==id) {
 				localizado=true;
@@ -125,7 +125,7 @@ public class SistemaTicketUNLA {
 	public void eliminarCompra(long id) throws Exception {
 		boolean localizado=false;
 		int p=0;
-		while(p<compras.size()&&localizado==false) {
+		while(p<compras.size()&&!localizado) {
 			Compra compra=compras.get(p);
 			if(compra.getId()==id) {
 				compras.remove(p);
@@ -140,7 +140,7 @@ public class SistemaTicketUNLA {
 		Compra compra=null;
 		boolean localizado=false;
 		int p=0;
-		while(p<compras.size()&&localizado==false) {
+		while(p<compras.size()&&!localizado) {
 			compra=compras.get(p);
 			if(compra.getId()==id) {
 				localizado=true;
@@ -162,7 +162,7 @@ public class SistemaTicketUNLA {
 	public void modificarAuditorio(long id, String nombre, String tipoAuditorio, String direccion) throws Exception {
 		boolean localizado=false;
 		int p=0;
-		while(p<auditorios.size()&&localizado==false) {
+		while(p<auditorios.size()&&!localizado) {
 			Auditorio auditorio=auditorios.get(p);
 			if(auditorio.getId()==id) {
 				localizado=true;
@@ -178,7 +178,7 @@ public class SistemaTicketUNLA {
 	public void eliminarAuditorio(long id) throws Exception {
 		boolean localizado=false;
 		int p=0;
-		while(p<auditorios.size()&&localizado==false) {
+		while(p<auditorios.size()&&!localizado) {
 			Auditorio auditorio=auditorios.get(p);
 			if(auditorio.getId()==id) {
 				auditorios.remove(p);
@@ -193,7 +193,7 @@ public class SistemaTicketUNLA {
 		Auditorio auditorio=null;
 		boolean localizado=false;
 		int p=0;
-		while(p<auditorios.size()&&localizado==false) {
+		while(p<auditorios.size()&&!localizado) {
 			auditorio=auditorios.get(p);
 			if(auditorio.getId()==id) {
 				localizado=true;
@@ -215,7 +215,7 @@ public class SistemaTicketUNLA {
 	public void modificarEvento(long id, String nombre) throws Exception {
 		boolean localizado=false;
 		int p=0;
-		while(p<eventos.size()&&localizado==false) {
+		while(p<eventos.size()&&!localizado) {
 			Evento evento=eventos.get(p);
 			if(evento.getId()==id) {
 				localizado=true;
@@ -229,7 +229,7 @@ public class SistemaTicketUNLA {
 	public void eliminarEvento(long id) throws Exception {
 		boolean localizado=false;
 		int p=0;
-		while(p<eventos.size()&&localizado==false) {
+		while(p<eventos.size()&&!localizado) {
 			Evento evento=eventos.get(p);
 			if(evento.getId()==id) {
 				localizado=true;
@@ -244,7 +244,7 @@ public class SistemaTicketUNLA {
 		Evento evento = null;
 		boolean localizado=false;
 		int p=0;
-		while(p<eventos.size()&&localizado==false) {
+		while(p<eventos.size()&&!localizado) {
 			evento=eventos.get(p);
 			if(evento.getId()==id) {
 				localizado=true;
@@ -262,6 +262,94 @@ public class SistemaTicketUNLA {
 		}
 		
 		return eventos;
+	}
+	
+	public String generarReporteXFuncion(long idFuncion) {
+		String reporte="";
+		for(int i=0;i<compras.size();i++) {
+			Compra compra=compras.get(i);
+			for(int j=0;j<compra.getEntradas().size();j++) {
+				if(compra.getEntradas().get(j).getFuncion().getId()==idFuncion) {
+					Entrada entrada=compra.getEntradas().get(j);
+					reporte=reporte+entrada.toString();
+				}
+			}
+		}
+		return reporte;
+	}
+	
+	public String generarReporteDescuento() {
+		String reporte="";
+		for(int i=0;i<compras.size();i++) {
+			Compra compra=compras.get(i);
+			if(compra.getCliente().isEstudiante()||compra.getCliente().isJubilado()) {
+				reporte=reporte+compra;
+			}
+			else for(int j=0;j<compra.getEntradas().size();j++) {
+				Entrada entrada=compra.getEntradas().get(j);
+				if(entrada.getFuncion().getDescuentoDia()!=1) {
+					reporte=reporte+compra.getId()+" "+compra.getCliente()+" "+entrada;
+				}
+			}
+		}
+		return reporte;
+	}
+	
+	public int generarReporteDescuentoTipoClientePeriodo(boolean estudiante,boolean jubilado,GregorianCalendar fechaInicial,GregorianCalendar fechaFinal) throws Exception{
+		int reporte=0;
+		if(estudiante&&jubilado) throw new Exception("Error: No puede ser estudiante y jubilado al mismo tiempo");
+		if(estudiante) reporte=reporteEstudiantes(fechaInicial,fechaFinal);
+		else if(jubilado) reporte=reporteJubilados(fechaInicial,fechaFinal);
+		else reporte=reporteUsuarioComun(fechaInicial,fechaFinal);
+		return reporte;
+	}
+	
+	public int reporteEstudiantes(GregorianCalendar fechaInicial,GregorianCalendar fechaFinal) {
+		int reporte=0;
+		for(int i=0;i<compras.size();i++) {
+			Compra compra=compras.get(i);
+			if(compra.getCliente().isEstudiante()) {
+				for(int j=0;j<compra.getEntradas().size();j++) {
+					Entrada entrada=compra.getEntradas().get(j);
+					if(entrada.getFuncion().getFecha().compareTo(fechaInicial)>=0&&entrada.getFuncion().getFecha().compareTo(fechaFinal)<=0) {
+						reporte=reporte+1;
+					}
+				}
+			}
+		}
+		return reporte;
+	}
+	
+	public int reporteJubilados(GregorianCalendar fechaInicial,GregorianCalendar fechaFinal) {
+		int reporte=0;
+		for(int i=0;i<compras.size();i++) {
+			Compra compra=compras.get(i);
+			if(compra.getCliente().isJubilado()) {
+				for(int j=0;j<compra.getEntradas().size();j++) {
+					Entrada entrada=compra.getEntradas().get(j);
+					if(entrada.getFuncion().getFecha().compareTo(fechaInicial)>=0&&entrada.getFuncion().getFecha().compareTo(fechaFinal)<=0) {
+						reporte=reporte+1;
+					}
+				}
+			}
+		}
+		return reporte;
+	}
+	
+	public int reporteUsuarioComun(GregorianCalendar fechaInicial,GregorianCalendar fechaFinal) {
+		int reporte=0;
+		for(int i=0;i<compras.size();i++) {
+			Compra compra=compras.get(i);
+			if(!compra.getCliente().isEstudiante()&&!compra.getCliente().isJubilado()) {
+				for(int j=0;j<compra.getEntradas().size();j++) {
+					Entrada entrada=compra.getEntradas().get(j);
+					if(entrada.getFuncion().getFecha().compareTo(fechaInicial)>=0&&entrada.getFuncion().getFecha().compareTo(fechaFinal)<=0) {
+						reporte=reporte+1;
+					}
+				}
+			}
+		}
+		return reporte;
 	}
 	
 }
