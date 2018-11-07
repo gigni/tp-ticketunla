@@ -9,7 +9,7 @@ public class Funcion {
 	private double descuentoDia;
 	
 
-	public Funcion(long id, GregorianCalendar fecha, Auditorio auditorio,  double descuentoDia) {
+	public Funcion(long id, GregorianCalendar fecha, Auditorio auditorio,  double descuentoDia) throws Exception {
 		this.id = id;
 		this.fecha = fecha;
 		setAuditorio(auditorio);
@@ -36,9 +36,15 @@ public class Funcion {
 		return auditorio;
 	}
 
-	public void setAuditorio(Auditorio auditorio) {
-		Auditorio aux = new Auditorio();
-		aux=auditorio;
+	public void setAuditorio(Auditorio auditorio) throws Exception{
+		Auditorio aux = new Auditorio(auditorio.getId(),auditorio.getNombre(), auditorio.getTipoAuditorio(), auditorio.getDireccion());
+		List<Sector> sectores = new ArrayList<Sector>();
+		for(int i=0;i<auditorio.getSectores().size();i++) {
+			Sector auxSector=auditorio.getSectores().get(i);
+			Sector sector=new Sector(auxSector.getId(),auxSector.getnombreSector(),auxSector.getCapacidadSector(),auxSector.getCantidadFilas(),auxSector.getCantidadColumnas(), auxSector.getCantidadPopulares());
+			sectores.add(sector);
+		}
+		aux.setSectores(sectores);
 		this.auditorio = aux;
 	}
 

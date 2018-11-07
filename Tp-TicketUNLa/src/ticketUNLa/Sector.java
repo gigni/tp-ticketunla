@@ -144,4 +144,13 @@ public class Sector {
 				+ ", populares=" + populares + ", butacas=" + butacas + "\n";
 	}
 	
+	@Override
+	public Object clone(){  
+	    try{  
+	        return super.clone();  
+	    }catch(Exception e){ 
+	        return null; 
+	    }
+	}
+	
 }

@@ -31,7 +31,7 @@ public class Tarifa {
 	}
 
 	public String imprimirTarifa() {
-		return "Tarifa: sector="+sector.getnombreSector()+"precioSector="+precioSector+"\n";
+		return "Tarifa: sector="+sector.getnombreSector()+" precioSector="+precioSector+"\n";
 	}
 	@Override
 	public String toString() {

@@ -2,7 +2,7 @@ package ticketUNLa;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Auditorio {
+public class Auditorio implements Cloneable{
 	
 	private long id;
 	private String nombre;
@@ -143,5 +143,13 @@ public class Auditorio {
 				+ direccion + ",\n sectores=" + sectores + "\n";
 	}
 
+	@Override
+	public Object clone(){  
+	    try{  
+	        return super.clone();  
+	    }catch(Exception e){ 
+	        return null; 
+	    }
+	}
 
 }
