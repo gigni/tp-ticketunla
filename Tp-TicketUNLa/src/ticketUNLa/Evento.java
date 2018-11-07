@@ -60,7 +60,7 @@ public class Evento {
 		return descuento;
 	}
 	
-	public void agregarFuncion(GregorianCalendar fecha, Auditorio auditorio,  double descuentoDia) {
+	public void agregarFuncion(GregorianCalendar fecha, Auditorio auditorio,  double descuentoDia) throws Exception {
 		long id=-1;
 		if(funciones.isEmpty()) id=1;
 		else id=funciones.get(funciones.size()-1).getId()+1;

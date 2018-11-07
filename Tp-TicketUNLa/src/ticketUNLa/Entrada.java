@@ -123,7 +123,7 @@ public class Entrada {
 			for(int p=0;p<evento.getTarifas().size();p++) {
 				Tarifa tarifa=evento.getTarifas().get(p);
 				if(tarifa.getSector().getnombreSector().equals(nombreSector)) {
-					this.valorFinalEntrada=tarifa.calcularPrecioFinal(cliente, descuento)*funcion.getDescuentoDia();
+					this.valorFinalEntrada=Math.round((tarifa.calcularPrecioFinal(cliente, descuento)*funcion.getDescuentoDia())*100)/100;
 				}
 			}
 				
@@ -147,6 +147,7 @@ public class Entrada {
 			SectorPopular popular= sector.getPopulares();
 			if(popular.getCantidadMaxima()==0) throw new Exception("Error: No queda lugar en popular");
 			popular.setCantidadMaxima(popular.getCantidadMaxima()-1);
+			this.nombreSector=sector.getnombreSector();
 			this.esNumerado=false;
 			this.posicionX=-1;
 			this.posicionY=-1;
@@ -170,7 +171,7 @@ public class Entrada {
 	
 	@Override
 	public String toString() {
-		String imprimir= "\nEntrada: numeroEntrada=" + id + " Evento="+evento.getNombre()+", funcion=" + funcion.getId() +"Fecha="+Funciones.traerFechaCortaHora(funcion.getFecha()) +", valorfinalEntrada="
+		String imprimir= "\nEntrada: numeroEntrada=" + id + " Evento="+evento.getNombre()+", funcion=" + funcion.getId() +", Fecha="+Funciones.traerFechaCortaHora(funcion.getFecha()) +", valorfinalEntrada="
 				+ valorFinalEntrada + " Sector: "+ nombreSector;
 		 if (esNumerado) {
 			 imprimir=imprimir+" Posicion X: "+posicionX +" Posicion Y: "+ posicionY;

@@ -32,4 +32,13 @@ public class Butaca {
 	public String toString() {
 		return "Butaca: posicionX=" + posicionX + ", posicionY=" + posicionY + ", Ocupado=" + ocupado + "\n";
 	}
+	
+	@Override
+	public Object clone(){  
+	    try{  
+	        return super.clone();  
+	    }catch(Exception e){ 
+	        return null; 
+	    }
+	}
 }
