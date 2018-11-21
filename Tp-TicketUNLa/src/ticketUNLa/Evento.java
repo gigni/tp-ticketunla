@@ -61,39 +61,21 @@ public class Evento {
 	}
 	
 	public void agregarFuncion(GregorianCalendar fecha, Auditorio auditorio,  double descuentoDia) throws Exception {
-		long id=-1;
-		if(funciones.isEmpty()) id=1;
-		else id=funciones.get(funciones.size()-1).getId()+1;
-		Funcion funcion = new Funcion(id, fecha, auditorio, descuentoDia);
-		funciones.add(funcion);
+		long id=1;
+		if(!funciones.isEmpty()) id=funciones.get(funciones.size()-1).getId()+1;
+		funciones.add(new Funcion(id, fecha, auditorio, descuentoDia));
 	}
 	
 	public void modificarFuncion(long id, GregorianCalendar fecha, Auditorio auditorio,  double descuentoDia) throws Exception {
-		boolean localizado=false;
-		int p=0;
-		while(p<funciones.size()&&!localizado) {
-			Funcion funcion=funciones.get(p);
-			if(funcion.getId()==id) {
-				localizado=true;
-				funcion.setFecha(fecha);
-				funcion.setAuditorio(auditorio);
-				funcion.setDescuentoDia(descuentoDia);
-			}
-		}
-		if(!localizado) throw new Exception("Error: No se encontro el Evento");
+		Funcion funcion=traerFuncion(id);
+		funcion.setFecha(fecha);
+		funcion.setAuditorio(auditorio);
+		funcion.setDescuentoDia(descuentoDia);
 	}
 	
 	public void eliminarFuncion(long id) throws Exception {
-		boolean localizado=false;
-		int p=0;
-		while(p<funciones.size()&&!localizado) {
-			Funcion funcion=funciones.get(p);
-			if(funcion.getId()==id) {
-				localizado=true;
-				funciones.remove(p);
-			}
-		}
-		if(!localizado) throw new Exception("Error: No se encontro el Evento");
+		Funcion funcion = traerFuncion(id);
+		funciones.remove(funcion);
 	}
 	
 	public Funcion traerFuncion(long id) throws Exception{

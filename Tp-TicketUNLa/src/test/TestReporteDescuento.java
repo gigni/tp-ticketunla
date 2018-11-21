@@ -12,8 +12,8 @@ public class TestReporteDescuento {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		SistemaTicketUNLA sis = new SistemaTicketUNLA();
 		try{
-			SistemaTicketUNLA sis = new SistemaTicketUNLA();
 			sis.agregarAuditorio("unla", "cine", "calle falsa 123");
 			sis.agregarAuditorio("lavalle", "cine", "lavalle 780");
 			Auditorio auditorio=sis.traerAuditorio(1);

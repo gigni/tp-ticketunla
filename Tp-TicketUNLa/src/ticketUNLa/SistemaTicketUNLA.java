@@ -58,44 +58,25 @@ public class SistemaTicketUNLA {
 	}
 	
 	public void agregarCliente(int dni, String nombre, String apellido, GregorianCalendar nacimiento, boolean esEstudiante, boolean esJubilado) {
-		long id=-1;
-		if(clientes.isEmpty()) id=1;
-		else id=clientes.get(clientes.size()-1).getId()+1;
+		long id=1;
+		if(!clientes.isEmpty()) id=clientes.get(clientes.size()-1).getId()+1;
 		Cliente cliente = new Cliente(id, dni, nombre, apellido, nacimiento, esEstudiante, esJubilado);
 		clientes.add(cliente);
 	}
 	
 	public void modificarCliente(long id, int dni, String nombre, String apellido, GregorianCalendar nacimiento, boolean esEstudiante, boolean esJubilado) throws Exception {	//A partir del id modifico los demas datos del Cliente. Id es lo unico no permito modifcar
-		boolean localizado=false;
-		int p=0;
-		while(p<clientes.size()&&!localizado) {
-			Cliente cliente=clientes.get(p);
-			if(cliente.getId()==id) {
-				localizado=true;
-				cliente.setDni(dni);
-				cliente.setNombre(nombre);
-				cliente.setApellido(apellido);
-				cliente.setNacimiento(nacimiento);
-				cliente.setEstudiante(esEstudiante);
-				cliente.setJubilado(esJubilado);
-			}
-			p++;
-		}
-		if(!localizado) throw new Exception("Error: No se encontro el Cliente");
+		Cliente cliente=traerCliente(id);
+		cliente.setDni(dni);
+		cliente.setNombre(nombre);
+		cliente.setApellido(apellido);
+		cliente.setNacimiento(nacimiento);
+		cliente.setEstudiante(esEstudiante);
+		cliente.setJubilado(esJubilado);
 	}
 	
 	public void eliminarCliente (long id) throws Exception {
-		boolean localizado=false;
-		int p=0;
-		while(p<clientes.size()&&!localizado) {
-			Cliente cliente=clientes.get(p);
-			if(cliente.getId()==id) {
-				clientes.remove(p);
-				localizado=true;
-			}
-			p++;
-		}
-		if(!localizado) throw new Exception("Error: No se encontro el Cliente");
+		Cliente cliente=traerCliente(id);
+		clientes.remove(cliente);
 	}
 	
 	public Cliente traerCliente(long id) throws Exception {
@@ -115,25 +96,15 @@ public class SistemaTicketUNLA {
 	}
 	
 	public void agregarCompra (Cliente cliente) {
-		long id=-1;
-		if(compras.isEmpty()) id=1;
-		else id=compras.get(compras.size()-1).getId()+1;
+		long id=1;
+		if(!compras.isEmpty()) id=compras.get(compras.size()-1).getId()+1;
 		Compra compra = new Compra(id,cliente);
 		compras.add(compra);
 	}
 	
 	public void eliminarCompra(long id) throws Exception {
-		boolean localizado=false;
-		int p=0;
-		while(p<compras.size()&&!localizado) {
-			Compra compra=compras.get(p);
-			if(compra.getId()==id) {
-				compras.remove(p);
-				localizado=true;
-			}
-			p++;
-		}
-		if(!localizado) throw new Exception("Error: No se encontro la Compra");
+		Compra compra=traerCompra(id);
+		compras.remove(compra);
 	}
 	
 	public Compra traerCompra(long id) throws Exception{
@@ -153,40 +124,21 @@ public class SistemaTicketUNLA {
 	
 	public void agregarAuditorio(String nombre, String tipoAuditorio, String direccion) {
 		long id=1;
-		if(auditorios.isEmpty()) id=1;
-		else id=auditorios.get(auditorios.size()-1).getId()+1;
+		if(!auditorios.isEmpty())  id=auditorios.get(auditorios.size()-1).getId()+1;
 		Auditorio auditorio = new Auditorio(id,nombre,tipoAuditorio,direccion);
 		auditorios.add(auditorio);
 	}
 	
 	public void modificarAuditorio(long id, String nombre, String tipoAuditorio, String direccion) throws Exception {
-		boolean localizado=false;
-		int p=0;
-		while(p<auditorios.size()&&!localizado) {
-			Auditorio auditorio=auditorios.get(p);
-			if(auditorio.getId()==id) {
-				localizado=true;
-				auditorio.setNombre(nombre);
-				auditorio.setTipoAuditorio(tipoAuditorio);
-				auditorio.setDireccion(direccion);
-			}
-			p++;
-		}
-		if(!localizado) throw new Exception("Error: No se encontro el Auditorio");
+			Auditorio auditorio=traerAuditorio(id);
+			auditorio.setNombre(nombre);
+			auditorio.setTipoAuditorio(tipoAuditorio);
+			auditorio.setDireccion(direccion);
 	}
 	
 	public void eliminarAuditorio(long id) throws Exception {
-		boolean localizado=false;
-		int p=0;
-		while(p<auditorios.size()&&!localizado) {
-			Auditorio auditorio=auditorios.get(p);
-			if(auditorio.getId()==id) {
-				auditorios.remove(p);
-				localizado=true;
-			}
-			p++;
-		}
-		if(!localizado) throw new Exception("Error: No se encontro el Auditorio");
+		Auditorio auditorio=traerAuditorio(id);
+		auditorios.remove(auditorio);
 	}
 	
 	public Auditorio traerAuditorio(long id) throws Exception{
@@ -205,39 +157,20 @@ public class SistemaTicketUNLA {
 	}
 	
 	public void agregarEvento(String nombre,double descuentoEstudiante,double descuentoJubilado) {
-		long id=-1;
-		if(eventos.isEmpty()) id=1;
-		else id=eventos.get(eventos.size()-1).getId()+1;
+		long id=1;
+		if(!eventos.isEmpty()) id=eventos.get(eventos.size()-1).getId()+1;
 		Evento evento = new Evento(id,nombre,descuentoEstudiante,descuentoJubilado);
 		eventos.add(evento);
 	}
 	
 	public void modificarEvento(long id, String nombre) throws Exception {
-		boolean localizado=false;
-		int p=0;
-		while(p<eventos.size()&&!localizado) {
-			Evento evento=eventos.get(p);
-			if(evento.getId()==id) {
-				localizado=true;
-				evento.setNombre(nombre);
-			}
-			p++;
-		}
-		if(!localizado) throw new Exception("Error: No se encontro el Evento");
+		Evento evento=traerEvento(id);
+		evento.setNombre(nombre);
 	}
 	
 	public void eliminarEvento(long id) throws Exception {
-		boolean localizado=false;
-		int p=0;
-		while(p<eventos.size()&&!localizado) {
-			Evento evento=eventos.get(p);
-			if(evento.getId()==id) {
-				localizado=true;
-				eventos.remove(p);
-			}
-			p++;
-		}
-		if(!localizado) throw new Exception("Error: No se encontro el Evento");
+		Evento evento=traerEvento(id);
+		eventos.remove(evento);
 	}
 	
 	public Evento traerEvento(long id) throws Exception{
