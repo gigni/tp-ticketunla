@@ -65,43 +65,38 @@ public class Auditorio implements Cloneable{
 	
 	public void agregarSector(String nombreSector, int capacidadSector, int cantidadFilas, int cantidadColumnas, int cantidadPopulares) throws Exception {
 		long id=1;
-		if(sectores.isEmpty()) id=1;
-		else id=sectores.get(sectores.size()-1).getId()+1;
+		if(!sectores.isEmpty()) id=sectores.get(sectores.size()-1).getId()+1;
 		Sector sector = new Sector(id,nombreSector, capacidadSector, cantidadFilas, cantidadColumnas, cantidadPopulares);
 		sectores.add(sector);
 	}
 	
 	public void modificarSector(long id,String nombreSector, int capacidadSector, int cantidadFilas, int cantidadColumnas, int cantidadPopulares) throws Exception{
-		boolean localizado=false;
-		int p=0;
-		while(p<sectores.size()&&!localizado) {
-			Sector sector=sectores.get(p);
-			if(sector.getId()==id) {
-				sector.setnombreSector(nombreSector);
-				sector.setCapacidadSector(capacidadSector);
-				sector.setCantidadFilas(cantidadFilas);
-				sector.setCantidadColumnas(cantidadColumnas);
-				sector.setCantidadPopulares(cantidadPopulares);
-				sector.setButacas(cantidadFilas,cantidadColumnas);
-				sector.setCantidadPopulares(cantidadPopulares);
-			}
-			p++;
-		}
-		if(!localizado) throw new Exception("Error: No se encontro el Sector");
+		Sector sector=traerSector(id);
+		sector.setnombreSector(nombreSector);
+		sector.setCapacidadSector(capacidadSector);
+		sector.setCantidadFilas(cantidadFilas);
+		sector.setCantidadColumnas(cantidadColumnas);
+		sector.setCantidadPopulares(cantidadPopulares);
+		sector.setButacas(cantidadFilas,cantidadColumnas);
+		sector.setCantidadPopulares(cantidadPopulares);
 	}
 	
 	public void eliminarSector(long id) throws Exception{
-		boolean localizado=false;
+		Sector sector=traerSector(id);
+		sectores.remove(sector);
+	}
+	
+	public Sector traerSector(long id) throws Exception {
 		int p=0;
-		while(p<sectores.size()&&!localizado) {
-			Sector sector=sectores.get(p);
-			if(sector.getId()==id) {
-				sectores.remove(p);
-				localizado=true;
-			}
+		boolean localizado=false;
+		Sector sector= null;
+		while(p<getSectores().size()&&!localizado) {
+			sector = getSectores().get(p);
+			if(sector.getId()==id) localizado=true;
 			p++;
 		}
-		if(!localizado) throw new Exception("Error: No se encontro el Sector");
+		if(!localizado) throw new Exception("Error: No se encontro el sector.");
+		return sector;
 	}
 	
 	public Sector traerSector(String nombreSector) throws Exception {

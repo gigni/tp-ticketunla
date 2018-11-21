@@ -12,8 +12,8 @@ public class TestReporteTicketFuncion {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		SistemaTicketUNLA sis = new SistemaTicketUNLA();
 		try{
-			SistemaTicketUNLA sis = new SistemaTicketUNLA();
 			sis.agregarAuditorio("unla", "cine", "calle falsa 123");
 			sis.agregarAuditorio("lavalle", "cine", "lavalle 780");
 			Auditorio auditorio=sis.traerAuditorio(1);
@@ -46,7 +46,7 @@ public class TestReporteTicketFuncion {
 			compra.agregarEntrada(evento, cliente2, 1, "palco", true, 5, 0);
 			compra.agregarEntrada(evento, cliente2, 1, "pullman", false, 0, 0);
 			
-			System.out.println(sis.generarReporteXFuncion(1));
+			System.out.println(sis.generarReporteXFuncion(2));
 		}
 		catch(Exception e){
 			System.out.println("Excepcion:"+ e.getMessage());
